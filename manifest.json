@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "DataDog Asset Retriever",
+  "version": "1.0.0",
+  "description": "Export Datadog monitors or dashboards list to CSV (Name, URL, Query).",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "host_permissions": [
+    "*://*.datadoghq.com/*",
+    "*://*.datadoghq.eu/*",
+    "*://*.ddog-gov.com/*"
+  ],
+  "action": {
+    "default_title": "Export to CSV",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.datadoghq.com/monitors*",
+        "*://*.datadoghq.com/dashboard*",
+        "*://*.datadoghq.eu/*",
+        "*://*.ddog-gov.com/monitors*",
+        "*://*.ddog-gov.com/dashboard*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png"
+  }
+}

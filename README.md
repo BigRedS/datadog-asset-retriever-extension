@@ -8,7 +8,6 @@ A **Chrome** and **Firefox** extension that runs on Datadog **monitor list** or 
 |--------|-------------|
 | **Name** | Display name of the monitor or dashboard |
 | **URL** | Full URL to the monitor or dashboard |
-| **Query** | Alert/query string (monitors only; empty for dashboards) |
 
 ## Supported pages
 
@@ -71,19 +70,10 @@ If any URL fails to load (network error, timeout, or invalid/non-Datadog URL), t
    ```
    You’ll see whether the page is recognized, how many links were found, and a few sample links. Sharing that output (or a screenshot) helps tune detection.
 
-## Query column (monitors)
-
-The extension tries to read the **query** from the same table row as the monitor (e.g. a “Query” or “Metric” column if the UI shows it). If your Datadog UI doesn’t show the query on the list page, the Query column will be empty. In that case you can:
-
-- Open each monitor and copy the query from the edit page, or  
-- Use the [Datadog Monitors API](https://docs.datadoghq.com/api/latest/monitors/) to fetch query definitions (e.g. with an API key in a separate script).
-
-Dashboards don’t have a single “alert query”, so the Query column is left empty for dashboard exports.
-
 ## Files
 
 - `manifest.json` – Extension manifest (Manifest V3)
-- `content.js` – Runs on Datadog list pages; collects links and optional query text
+- `content.js` – Runs on Datadog list pages; collects links and exports Name, URL
 - `popup.html` / `popup.js` – Toolbar popup with “Export to CSV”
 - `icons/` – Toolbar icons (16×16, 48×48)
 
